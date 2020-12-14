@@ -18,8 +18,14 @@ import time
 #url = 'http://suumo.jp/jj/chintai/ichiran/FR301FC001/?ar=030&bs=040&ta=13&sc=13121&cb=0.0&ct=9999999&et=9999999&cn=9999999&mb=0&mt=9999999&shkr1=03&shkr2=03&shkr3=03&shkr4=03&fw2=&srch_navi=1'
 
 #地区指定
-item = 'chuo'
+item = 'chiyoda'
 #url = 'https://suumo.jp/chintai/tokyo/sc_adachi/'
+
+#スクレイピングするページ数の指定
+#end = Noneとすると全ページ取得
+#end = None
+end = 3
+
 
 url = f'https://suumo.jp/chintai/tokyo/sc_{item}/'
 
@@ -74,7 +80,7 @@ detail_url = []
 
 
 #各ページで以下の動作をループ
-for url in urls:
+for url in urls[:end]:
     #物件リストを切り出し
     result = requests.get(url)
     c = result.content
@@ -192,7 +198,7 @@ suumo_df = pd.concat([name, address, locations0, locations1, locations2, age, he
 suumo_df.columns=['マンション名','住所','立地1','立地2','立地3','築年数','建物高さ','階','賃料','管理費', '敷/礼/保証/敷引,償却',                  '間取り','専有面積', '詳細URL']
 
 #csvファイルとして保存
-suumo_df.to_csv(f'suumo_{item}_all.csv', sep = '\t',encoding='utf-16')
+suumo_df.to_csv(f'suumo_{item}.csv', sep = '\t',encoding='utf-16')
 
 
 
