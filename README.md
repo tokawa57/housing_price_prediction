@@ -8,7 +8,7 @@
 
 #### 変更出来るパラメータ
 - スクレイピング&予測する地区はscraping.py,preprocessing_and_learning.py共にitemで指定
-- item = 'chuo'とすると中央区のデータを取ってきて学習
+- item = 'chuo'とすると中央区のデータを取ってきて学習(SUUMOのサイトに準ずる)
 - endパラメータで取得するページ数を設定
 - end = Noneとすると、全ページ取得（数十分程度）。デフォルトでは3ページと設定。		
 
